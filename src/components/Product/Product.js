@@ -33,7 +33,7 @@ function Product({id, title, price, description, category, image}) {
                     <p className='text-xs text-gray-500'>FREE Next-Day Delivery</p>
                 </div>
             )}
-            <button>Add to Basket</button>
+            <button className='mt-auto button'>Add to Basket</button>
         </div>
     )
 }
