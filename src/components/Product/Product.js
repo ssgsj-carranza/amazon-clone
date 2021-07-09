@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Image from 'next/dist/client/image';
 import {StarIcon} from '@heroicons/react/solid';
+import Currency from 'react-currency-formatter';
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
@@ -9,6 +10,8 @@ function Product({id, title, price, description, category, image}) {
     const[rating] = useState(
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING 
     );
+
+    const [hasPrime] = useState(Math.random() < 0.5)
 
     return (
         <div>
@@ -20,8 +23,14 @@ function Product({id, title, price, description, category, image}) {
                     <StarIcon className='h-5'/>
                 ))}
             </div>
+            <p>{description}</p>
+            <div>
+                <Currency quantity={price} currency='USD'/>
+            </div>
         </div>
     )
 }
 
 export default Product
+
+//NOTES --> .fill() CREATES AN ARRAY WITH EMPTY VALUES IN
