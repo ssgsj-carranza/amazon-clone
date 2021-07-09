@@ -1,5 +1,5 @@
 // import React from 'react'
-//-->FIX BUG BELOW
+
 function ProductFeed({products}) {
     return (
         <div>
