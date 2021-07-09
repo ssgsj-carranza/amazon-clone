@@ -15,7 +15,7 @@ function ProductFeed({products}) {
                     price={price}/>
            ))}
            <img className='md:col-span-full' src='https://links.papareact.com/dyz' alt=''/>
-           <div>
+           <div className=' md:col-span-2'>
             {products.slice(4,5).map(({id, title, price, description, category, image}) => (
                 <Product
                         key={id}
@@ -26,7 +26,17 @@ function ProductFeed({products}) {
                         image={image}
                         price={price}/>
             ))}
-           </div> 
+           </div>
+            {products.slice(5, products.length).map(({id, title, price, description, category, image}) => (
+                    <Product
+                            key={id}
+                            id={id}
+                            title={title}
+                            description={description}
+                            category={category}
+                            image={image}
+                            price={price}/>
+                ))} 
         </div>
     )
 }
