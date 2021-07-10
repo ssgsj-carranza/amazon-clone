@@ -4,6 +4,8 @@ import {MenuIcon, SearchIcon, ShoppingCartIcon} from '@heroicons/react/outline';
 import {signIn, signOut, useSession} from 'next-auth/client';
 
 function Header() {
+    const [session] = useSession();
+    
     return (
         <header>
             {/* top navbar */}
@@ -23,7 +25,7 @@ function Header() {
                 {/* right components of navbar */}
                 <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
                     <div onClick={signIn} className='link'>
-                        <p>Hello SSGSJ</p>
+                        <p>{session ? `Hello, ${session.user.name}` : 'Sign In'}</p>
                         <p className='font-extrabold md:text-sm'>Account & Lists</p>
                     </div>
                     <div className='link'>
