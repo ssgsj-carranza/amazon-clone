@@ -1,9 +1,10 @@
 import React from 'react'
+import Header from '../components/Header/Header'
 
 function Checkout() {
     return (
-        <div>
-            <h1>checkout page</h1>    
+        <div className='bg-gray-100'>
+            <Header/>      
         </div>
     )
 }
