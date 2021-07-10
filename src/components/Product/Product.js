@@ -18,8 +18,17 @@ function Product({id, title, price, description, category, image}) {
     const [hasPrime] = useState(Math.random() < 0.5)
     
     const addItemToBasket = () => {
-        
-    }
+        const product ={
+            id, 
+            title, 
+            price, 
+            description, 
+            category, 
+            image    
+        };
+        //SENDING PRODUCT AS AN ACTION TO THE REDUX STORE...BASKET SLICE
+        dispatch(addToBasket(product));
+    };
 
     return (
         <div className='relative flex flex-col m-5 bg-white z-30 p-10'>
