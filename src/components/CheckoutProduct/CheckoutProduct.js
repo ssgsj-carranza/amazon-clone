@@ -1,9 +1,24 @@
 import {StarIcon} from '@heroicons/react/solid';
+import { fromParams } from 'google-gax/build/src/routingHeader';
 import Image from 'next/image'
 import React from 'react'
 import Currency from 'react-currency-formatter';
+import {useDispatch} from 'react-redux';
+import {addToBasket, removeFromBasket} from '../../slices/basketSlice';
 
 function CheckoutProduct({id, title, price, rating, description, category, image, hasPrime,}) {
+    const dispatch = useDispatch();
+    const addItemToBasket = () => {
+        const product = {id, title, price, rating, description, category, image, hasPrime}
+        //PUSH ITEM INTO REDUX
+        dispatch(addToBasket(product));
+    };
+
+    const removeItemFromBasket = () => {
+        //REMOVES ITEM FROM REDUX
+        dispatch(removeFromBasket({id}))
+    }
+    
     return (
         <div className='grid grid-cols-5'>
             <Image src={image} height={200} width={200} objectFit='contain'/>
@@ -22,6 +37,10 @@ function CheckoutProduct({id, title, price, rating, description, category, image
                         <p className='text-xs text-gray-500'>FREE Next-day Delivery</p>
                     </div>
                 )}
+            </div>
+            <div className='flex flex-col space-y-2 my-auto justify-self-end'>
+                <button className='button'onClick={addItemToBasket}>Add to Basket</button>
+                <button className='button' onClick={removeItemFromBasket}>Remove from Basket</button>
             </div>
         </div>
     )
