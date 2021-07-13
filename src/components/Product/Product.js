@@ -24,7 +24,9 @@ function Product({id, title, price, description, category, image}) {
             price, 
             description, 
             category, 
-            image    
+            image,
+            hasPrime,
+            rating,    
         };
         //SENDING PRODUCT AS AN ACTION TO THE REDUX STORE...BASKET SLICE
         dispatch(addToBasket(product));
