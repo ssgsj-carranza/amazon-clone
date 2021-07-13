@@ -1,4 +1,4 @@
-import { StarIcon } from '@heroicons/react/outline'
+import {StarIcon} from '@heroicons/react/solid';
 import Image from 'next/image'
 import React from 'react'
 
@@ -8,11 +8,12 @@ function CheckoutProduct({id, title, price, rating, description, category, image
             <Image src={image} height={200} width={200} objectFit='contain'/>
             <div className='col-span-3 mx-5'>
                 <p>{title}</p>
-                <div>
+                <div className='flex'>
                     {Array(rating).fill().map((_, i) => (
-                        <StarIcon className='h-5 text-yellow-500'/>
+                        <StarIcon key={i} className='h-5 text-yellow-500'/>
                     ))}
                 </div>
+                <p className='text-xs my-2 line-clamp-3'>{description}</p>
             </div>
         </div>
     )
