@@ -50,7 +50,7 @@ function Checkout() {
                                 <Currency quantity={total} currency='USD'/>
                             </span>
                             </h2>
-                            <button disabled={!session} className={`button mt-2 ${!session && 'from-gray-300 to-gray-500 bordere-gray-200 text-gray-300 cursor-not-allowed'}`}>
+                            <button role='link' disabled={!session} className={`button mt-2 ${!session && 'from-gray-300 to-gray-500 bordere-gray-200 text-gray-300 cursor-not-allowed'}`}>
                                 {!session ? 'Sign in to checkout' : 'Proceed to checkout'}
                             </button>
                         </>
