@@ -5,22 +5,22 @@ export default async (req, res) => {
     console.log(items);
     console.log(email);
     const transformedItems = items.map(item => ({
-        description :item.description,
+        description: item.description,
         quantity: 1,
         price_data: {
             currency: 'USD',
-            unite_amount: item.price *100,
+            unite_amount: item.price * 100,
             product_data: {
                 name: item.title,
                 images: [item.image]
             },
-        }
+        },
     }));
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        shipping_rates: ['shr_1JDKKTIPnNAsJa06p1dkhxbS','shr_1JDKMSIPnNAsJa06WQshnEF7','shr_1JDKNJIPnNAsJa06RxJa827Q'],
+        shipping_rates: ['shr_1JDKKTIPnNAsJa06p1dkhxbS'],
         shipping_address_collection: {
-            allowed_countries: ['US, GB, CA']
+            allowed_countries: ['US', 'GB', 'CA'],
         },
         line_items: transformedItems,
         mode: 'payment',
