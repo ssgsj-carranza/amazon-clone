@@ -33,4 +33,5 @@ export default async (req, res) => {
     });
     res.status(200).json({id: session.id})
 };
-//STRIPE CLI
+
+//SOLVE ISSUES WITH STRIPE NOT BEING RECOGNIZED!
