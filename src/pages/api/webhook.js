@@ -13,7 +13,16 @@ const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 const fulfillOrder = async(session) => {
     // console.log('fulfilling order', session)
-}
+    return app.firestore().collection('users').doc(session.metadata.email).collection('order').doc(session.id).set({
+        amount: session.amount_total / 100,
+        amount_shipping: session.total_details.amount_shipping / 100,
+        images: JSON.parse(session.metadata.images),
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    })
+    .then(() => {
+        console.log(`SUCCESS: Order ${session.id} has been added to the database`);
+    });
+};
 
 export default async (req, res) => {
     if (req.method === 'POST') {
