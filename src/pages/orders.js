@@ -1,10 +1,13 @@
 import React from 'react'
 import Header from '../components/Header/Header'
-import {useSession} from 'next-auth/client';
+import {useSession, getSession} from 'next-auth/client';
 import moment from 'moment';
+import db from '../../firebase';
 
 function Orders({orders}) {
     const [session] = useSession();
+
+    console.log(orders);
     
     return (
         <div>
@@ -17,7 +20,7 @@ function Orders({orders}) {
                     <h2>Please sign in to see your orders</h2>
                 )}
                 <div className='mt-5 space-y-4'>
-
+                    
                 </div>
             </main>
         </div>
@@ -29,7 +32,7 @@ export default Orders;
 export async function getServerSideProps (context) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     //GET THE USERS LOGGED IN CREDENTIALS
-    const session = getSession(context);
+    const session = await getSession(context);
     if (!session){
         return {
             props:{},
@@ -51,4 +54,9 @@ export async function getServerSideProps (context) {
             })
         ).data,
     })));
+    return {
+        props: {
+            orders,
+        },
+    };
 }
