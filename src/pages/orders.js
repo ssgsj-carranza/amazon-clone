@@ -23,4 +23,16 @@ function Orders({orders}) {
     )
 }
 
-export default Orders
+export default Orders;
+
+export async function getServerSideProps (context) {
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    //GET THE USERS LOGGED IN CREDENTIALS
+    const session = getSession(context);
+    if (!session){
+        return {
+            props:{},
+        };
+    }
+    const stripeOrders = await db
+}
