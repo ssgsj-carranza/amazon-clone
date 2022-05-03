@@ -16,10 +16,9 @@ function success() {
                         <h1 className='text-3xl'>Thank you, your order has been confirmed!</h1>
                     </div>
                     <p>
-                        Thank you for shopping with us. We'll send a confirmation once your item(s) have been shipped, if you would like to check
-                        the status of your order(s) please press the link below.
+                        Thank you for shopping with us. We'll send a confirmation once your item(s) have been shipped.
                     </p>
-                    <button onClick={() => router.push('/orders')} className='button  mt-8'>Go to my orders</button>
+                    <button onClick={() => router.push('/')} className='button  mt-8 font-semibold'>Go to homepage</button>
                 </div>
             </main>
         </div>

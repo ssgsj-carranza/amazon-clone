@@ -33,7 +33,7 @@ function Product({id, title, price, description, category, image}) {
     };
 
     return (
-        <div className='relative flex flex-col m-5 bg-white z-30 p-10'>
+        <div className='relative flex flex-col m-5 bg-white z-30 p-10 hover:shadow-xl hover:scale-105 transition duration-200 ease-in-out rounded-xl'>
             <p className='absolute top-2 right-2 text-xs italic text-gray-400'>{category}</p>
             <Image src={image} height={200} width={200} objectFit='contain'/>
             <h4 className='my-3'>{title}</h4>
@@ -52,7 +52,7 @@ function Product({id, title, price, description, category, image}) {
                     <p className='text-xs text-gray-500'>FREE Next-Day Delivery</p>
                 </div>
             )}
-            <button onClick={addItemToBasket} className='mt-auto button'>Add to Basket</button>
+            <button onClick={addItemToBasket} className='mt-auto button font-semibold'>Add to Basket</button>
         </div>
     )
 }

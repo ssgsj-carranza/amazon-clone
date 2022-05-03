@@ -53,18 +53,20 @@ export async function getServerSideProps (context) {
     const stripeOrders = await db.collection('users').doc(session.user.email).collection('orders').orderBy('timestamp', 'desc').get();
 
     //STRIPE ORDERS
-    const orders = await Promise.all(stripeOrders.docs.map(async (order) => ({
-        id: order.id,
-        amount: order.data().amount,
-        amountShipping: order.data().amount_shipping,
-        images: order.data().images,
-        timestamp: moment(order.data().timestamp.toDate()).unix(),
-        items: (
-            await stripe.checkout.sessions.listLineItems(order.id, {
-                limit: 100,
-            })
-        ).data,
-    })));
+    const orders = await Promise.all(
+        stripeOrders.docs.map(async (order) => ({
+            id: order.id,
+            amount: order.data().amount,
+            amountShipping: order.data().amount_shipping,
+            images: order.data().images,
+            timestamp: moment(order.data().timestamp.toDate()).unix(),
+            items: (
+                await stripe.checkout.sessions.listLineItems(order.id, {
+                    limit: 100,
+                })
+            ).data,
+        }))
+    );
     return {
         props: {
             orders,
